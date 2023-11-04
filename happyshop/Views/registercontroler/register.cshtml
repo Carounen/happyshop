@@ -1,0 +1,194 @@
+﻿@model register
+@{
+    ViewData["Title"] = "register";
+}
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin: 0;
+        margin-bottom: 60px; /* Height of the footer */
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px; /* Height of the footer */
+        background-color: #f5f5f5;
+        text-align: center;
+        line-height: 60px; /* Align text vertically in the middle */
+    }
+
+    /* Define the luxury view style */
+    .luxury-form {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+        /* Style the form input fields */
+        .luxury-form input[type="text"],
+        .luxury-form input[type="email"],
+        .luxury-form input[type="password"] {
+            border: none;
+            border-bottom: 1px solid #fc5e03; /* Orange color */
+            outline: none;
+            border-radius: 0;
+        }
+
+        /* Style the form labels */
+        .luxury-form label {
+            color: #fc5e03; /* Orange color */
+        }
+
+        /* Style the form submit button */
+        .luxury-form button {
+            background-color: #fc5e03; /* Orange color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .luxury-form button:hover {
+                background-color: #fc5e03; /* Darker shade of orange */
+            }
+
+</style>
+<br>
+
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                        <form class="mx-1 mx-md-4 luxury-form" method="post">
+                            <div asp-validation-summary="All"></div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label asp-for="Name"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label asp-for="lName"></label>
+                                    <input asp-for="lName" class="form-control" />
+                                    <span asp-validation-for="lName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label asp-for="uName"></label>
+                                    <input asp-for="uName" class="form-control" />
+                                    <span asp-validation-for="uName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="date" id="form3Example1c" class="form-control" />
+                                    <label class="form-label" for="form3Example1c">D.O.B</label>
+                                </div>
+                            </div>
+
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label asp-for="email"></label>
+                                    <input asp-for="email" class="form-control" />
+                                    <span asp-validation-for="email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+
+
+                            <input type="file" name="image" class="form-control" accept="image/*"
+                                   onchange="updatePreview(this, 'image-preview')">
+
+                                   <br>
+                            <div class="text-center">
+                                <img id="image-preview"
+                                     src="https://via.placeholder.com/400"
+                                     style="width:100px"
+                                     class="rounded rounded-circle" alt="placeholder">
+                            </div>
+
+
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label asp-for="pass"></label>
+                                    <input asp-for="pass" class="form-control" />
+                                    <span asp-validation-for="pass" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="password" id="form3Example4cd" class="form-control" />
+                                    <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                                </div>
+                            </div>
+
+                            <div class="form-check d-flex justify-content-center mb-5">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                <label class="form-check-label" for="form2Example3">
+                                    I agree all statements in <a href="#!">Terms of service</a>
+                                </label>
+                            </div>
+
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                             class="img-fluid" alt="Sample image">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function updatePreview(input, target) {
+        let file = input.files[0];
+        let reader = new FileReader();
+
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            let img = document.getElementById(target);
+            // can also use "this.result"
+            img.src = reader.result;
+        }
+    }
+</script>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
