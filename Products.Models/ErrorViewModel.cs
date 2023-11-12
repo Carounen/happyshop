@@ -1,4 +1,4 @@
-namespace happyshop.Models
+namespace Products.Models
 {
     public class ErrorViewModel
     {

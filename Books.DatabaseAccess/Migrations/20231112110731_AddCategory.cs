@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace happyshop.Migrations
+namespace Products.DatabaseAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCategoryToDatabase : Migration
+    public partial class AddCategory : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,10 +33,10 @@ namespace happyshop.Migrations
                 columns: new[] { "Id", "CreatedDateTime", "DisplayOrder", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3183), 1, "Tech" },
-                    { 2, new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3200), 2, "wood" },
-                    { 3, new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3201), 3, "interior" },
-                    { 4, new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3203), 4, "extrior" }
+                    { 1, new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3465), 1, "Tech" },
+                    { 2, new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3479), 2, "wood" },
+                    { 3, new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3481), 3, "interior" },
+                    { 4, new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3482), 4, "extrior" }
                 });
         }
 

@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using happyshop.Data;
+using Products.DatabaseAccess;
 
 #nullable disable
 
-namespace happyshop.Migrations
+namespace Products.DatabaseAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231105140119_AddCategoryToDatabase")]
-    partial class AddCategoryToDatabase
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +22,7 @@ namespace happyshop.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("happyshop.Models.Category", b =>
+            modelBuilder.Entity("Products.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,28 +48,28 @@ namespace happyshop.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3183),
+                            CreatedDateTime = new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3465),
                             DisplayOrder = 1,
                             Name = "Tech"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3200),
+                            CreatedDateTime = new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3479),
                             DisplayOrder = 2,
                             Name = "wood"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3201),
+                            CreatedDateTime = new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3481),
                             DisplayOrder = 3,
                             Name = "interior"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDateTime = new DateTime(2023, 11, 5, 18, 1, 19, 441, DateTimeKind.Local).AddTicks(3203),
+                            CreatedDateTime = new DateTime(2023, 11, 12, 15, 7, 31, 781, DateTimeKind.Local).AddTicks(3482),
                             DisplayOrder = 4,
                             Name = "extrior"
                         });

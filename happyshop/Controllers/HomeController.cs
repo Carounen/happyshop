@@ -1,5 +1,6 @@
-﻿using happyshop.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
+using Products.Models;
 using System.Diagnostics;
 
 namespace happyshop.Controllers

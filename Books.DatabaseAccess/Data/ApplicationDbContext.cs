@@ -1,7 +1,7 @@
-﻿using happyshop.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Products.Models;
 
-namespace happyshop.Data
+namespace Products.DatabaseAccess
 {
     public class ApplicationDbContext: DbContext
     {
