@@ -1,0 +1,95 @@
+﻿@model Announcement
+
+
+<div asp-validation-summary="All"></div>
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">@(Model.Id != 0 ? "Update" : "Create") Announcement</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        <div asp-validation-summary="All"></div>
+                        <div class="form-floating py-2 col-12">
+                            <textarea asp-for="Purpose" class="form-control border-0 shadow"></textarea>
+                            <label asp-for="Purpose" class="ms-2"></label>
+                            <span asp-validation-for="Purpose" class="text-danger"></span>
+                        </div>
+
+                    
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Announce" class="form-control border-0 shadow" />
+                            <label asp-for="Announce" class="ms-2"></label>
+                            <span asp-validation-for="Announce" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="file" asp-for="image" class="form-control border-0 shadow" onchange="previewImage(this)" />
+                            <label asp-for="image" class="ms-2"></label>
+                            <span asp-validation-for="image" class="text-danger"></span>
+                            <img id="imagePreview" class="mt-2" style="max-width: 100%; max-height: 200px; display: none;" />
+                        </div>
+                  
+
+
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Post</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Company" asp-action="Index" class="btn btn-outline-primary
+border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media
+                searchreplace table visualblocks wordcount checklist mediaembed casechange export
+            formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage
+                tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography
+                inlinecss',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link
+                image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent
+                outdent | emoticons charmap | removeformat',
+                });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

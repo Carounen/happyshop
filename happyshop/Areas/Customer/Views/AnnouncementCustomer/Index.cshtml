@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Announcement>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: 100%; /* Ensure the card takes the full height of the grid cell */
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #555;
+    }
+
+    .btn-group a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .btn-group a:hover {
+            text-decoration: none;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover,
+        .btn-success:hover {
+            filter: brightness(90%);
+        }
+
+    .product-card:nth-child(even) .product-image {
+        order: 2;
+    }
+
+    .product-card:nth-child(odd) .card-body {
+        order: 1;
+        font-size: 1.3rem; 
+    }
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const productImages = document.querySelectorAll('.product-image');
+        productImages.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                image.style.transform = 'scale(1.1)';
+            });
+
+            image.addEventListener('mouseleave', () => {
+                image.style.transform = 'scale(1)';
+            });
+        });
+
+
+      
+    });
+</script>
+<div class="container my-5">
+    <h3>Announcement</h3>
+
+   
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 product-card">
+                <div class="card">
+                    <img src="@Url.Content(product.image)" alt="Announcement Image" class="card-img-top product-image">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Purpose</h5>
+                        <p class="card-text">@product.Announce</p>
+                        <p class="card-text">Date: @product.Date.ToString("MMMM dd, yyyy")</p>
+                       
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

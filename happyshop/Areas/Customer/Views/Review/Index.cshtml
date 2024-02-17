@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Review>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px; /* Height of the footer */
+        background-color: #f5f5f5;
+        text-align: center;
+        line-height: 60px; /* Align text vertically in the middle */
+    }
+
+    .review-card {
+        display: flex;
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .card-image {
+        margin-right: 15px;
+        max-width: 150px; /* Adjusted max-width */
+        max-height: 150px; /* Adjusted max-height */
+    }
+
+    .card-details {
+        flex-grow: 1;
+    }
+
+    .coin-spin {
+        transition: transform 0.5s ease-in-out;
+    }
+
+        .coin-spin:hover {
+            transform: rotate(360deg);
+        }
+</style>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-md-10 col-xl-8 text-center">
+            <h3 class="text-primary">Reviews</h3>
+            <div class="col-6 text-end">
+                <a asp-controller="Review" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> &nbsp;Add Review</a>
+            </div>
+            <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+              On this page you will see our satisfy customer andd how they feel about the website.
+            </p>
+
+        </div>
+     
+    </div>
+
+    <div class="row text-center">
+        @foreach (var obj in Model)
+        {
+            <div class="col-md-4 mb-5 mb-md-0">
+                <div class="d-flex justify-content-center mb-4">
+                    @if (!string.IsNullOrEmpty(obj.image))
+                    {
+                        <img src="@Url.Content(obj.image)" alt="User Image" class="rounded-circle shadow-1-strong coin-spin" width="150" height="150" />
+                    }
+                </div>
+                <h5>@obj.Name</h5>
+                <h6 class="text-primary mb-3">@obj.Date.ToString("MMMM dd, yyyy")</h6>
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>@obj.Rev
+                </p>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.coin-spin').hover(
+                function () {
+                    $(this).addClass('coin-spin');
+                },
+                function () {
+                    $(this).removeClass('coin-spin');
+                }
+            );
+        });
+    </script>
+}

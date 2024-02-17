@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+
+    .product-image {
+        max-width: 50%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        height: 400px; /* Set a fixed height for all cards */
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .product-card:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+    .card-body {
+        padding: 20px;
+        height: 100%; /* Make the card body fill the entire height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #555;
+    }
+
+    .btn-group a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+        .btn-group a:hover {
+            text-decoration: none;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover,
+        .btn-success:hover {
+            filter: brightness(90%);
+        }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const productImages = document.querySelectorAll('.product-image');
+        productImages.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                image.style.transform = 'scale(1.1)';
+            });
+
+            image.addEventListener('mouseleave', () => {
+                image.style.transform = 'scale(1)';
+            });
+        });
+
+       
+        const searchInput = document.getElementById('live-search-input');
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+
+           
+            const cardTitles = document.querySelectorAll('.card-title');
+            cardTitles.forEach(title => {
+                const card = title.closest('.product-card');
+                const titleText = title.innerText.toLowerCase();
+
+                if (titleText.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+<div class="container my-5">
+    <h3>New products</h3>
+
+    <div class="mb-3">
+        <label for="live-search-input" class="form-label">Search Product Name:</label>
+        <input type="text" class="form-control" id="live-search-input">
+    </div>
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 product-card">
+                <div class="card">
+                    <img src="@Url.Content(product.image)" alt="Product Image" class="card-img-top product-image">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text">Price: @product.Price</p>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-success">
+                                <i class="bi bi-star"></i>Like
+                            </a>
+
+                            <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

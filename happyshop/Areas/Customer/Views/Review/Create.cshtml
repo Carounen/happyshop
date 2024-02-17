@@ -1,0 +1,88 @@
+﻿@using System.Security.Claims;
+@model Review
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden"  id="applicationUserId" name="ApplicationUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+
+    <div asp-validation-summary="All"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Post Review</h2>
+            <hr />
+        </div>
+        <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" readonly/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+            <div class="mb-3">
+
+                <label ></label>
+                <input type="hidden" id="userIdField" asp-for="ApplicationUserId" class="form-control" readonly />
+                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+            </div>
+
+           
+            <div class="form-floating py-2 col-12">
+                <input type="file" name="file" asp-for="image" class="form-control border-0 shadow" onchange="previewImage(this)" />
+
+                <label asp-for="image" class="ms-2"></label>
+                <span asp-validation-for="image" class="text-danger"></span>
+                <img id="imagePreview" class="mt-2" style="max-width: 100%; max-height: 200px; display: none;" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Rev"></label>
+                <input asp-for="Rev" class="form-control" />
+                <span asp-validation-for="Rev" class="text-danger"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="Date"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+            <a asp-controller="Review" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Back to List
+            </a>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}
+
+
+
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('imagePreview');
+        var file = input.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    }
+
+    var applicationUserId = document.getElementById('applicationUserId');
+    var userId = applicationUserId.value;
+    document.getElementById('userIdField').value = userId;
+</script>

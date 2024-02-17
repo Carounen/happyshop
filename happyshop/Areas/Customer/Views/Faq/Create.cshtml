@@ -1,0 +1,55 @@
+﻿@using System.Security.Claims;
+@model Faq
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post">
+    <input type="hidden" id="applicationUserId" name="ApplicationUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+
+    <div asp-validation-summary="All"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Ask A Question</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Question"></label>
+            <input asp-for="Question" class="form-control" />
+            <span asp-validation-for="Question" class="text-danger"></span>
+            <div class="mb-3">
+
+                <label></label>
+                <input type="hidden" id="userIdField" asp-for="ApplicationUserId" class="form-control" readonly />
+                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="mb-3">
+                <label asp-for="Date"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+            <a asp-controller="Faq" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Back to List
+            </a>
+        </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}
+
+
+
+<script>
+
+    var applicationUserId = document.getElementById('applicationUserId');
+    var userId = applicationUserId.value;
+    document.getElementById('userIdField').value = userId;
+</script>

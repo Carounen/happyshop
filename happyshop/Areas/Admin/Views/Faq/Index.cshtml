@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Faq>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .product-card {
+        width: 18rem;
+        margin: 10px;
+    }
+
+    .product-image {
+        max-width: 100%;
+        max-height: 150px;
+        display: block;
+        margin: auto;
+    }
+</style>
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Faq List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+         
+        </div>
+
+
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+
+                <tr>
+                    <th>Question</th>
+
+                    <th>Answer</th>
+
+                    <th>Date</th>
+
+
+
+
+                    <th></th>
+                </tr>
+            </thead>
+
+
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/faq.js"></script>
+}

@@ -1,0 +1,62 @@
+﻿@using System.Security.Claims;
+@model Faq
+@{
+    ViewData["Title"] = "Edit";
+}
+<form method="post" asp-action="Edit">
+    <input type="hidden" id="applicationUserId" name="ApplicationUserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+    <div asp-validation-summary="All"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Question</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Question"></label>
+            <input asp-for="Question" class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+        <label></label>
+        <input type="hidden" id="userIdField" asp-for="ApplicationUserId" class="form-control" readonly />
+        <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-warning" style="width:150px">Edit</button>
+        <a asp-controller="MyFaq" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('imagePreview');
+        var file = input.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    }
+    // Fetch and populate ApplicationUserId
+    var applicationUserId = document.getElementById('applicationUserId');
+    // You can use this value as needed, for example, to populate a hidden input field
+    var userId = applicationUserId.value;
+    // Now you can use the userId as needed, e.g., populate another form field
+    document.getElementById('userIdField').value = userId;
+</script>

@@ -1,0 +1,54 @@
+﻿@model Faq
+@{
+    ViewData["Title"] = "Delete";
+}
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Question</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Question"></label>
+            <input asp-for="Question" class="form-control" disabled />
+
+        </div>
+
+
+        <div class="mb-3">
+            <label asp-for="Date"></label>
+            <input asp-for="Date" class="form-control" disabled />
+
+        </div>
+        <button type="submit" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" style="width:150px">Delete</button>
+        <a asp-controller="MyFaq" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+</form>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+<script>
+    function previewImage(input) {
+        var preview = document.getElementById('imagePreview');
+        var file = input.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    }
+</script>
